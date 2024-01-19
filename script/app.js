@@ -13,7 +13,7 @@ navLinks.forEach(link => {
     if (link.className === 'home-link') {
       mainContentContainer.style.opacity = '';
       window.scrollTo(0, 0);
-      history.pushState(null, '', 'index.html');
+      history.pushState(null, '', '/');
     } else {
       mainEl.classList.add('scrolled');
       setTimeout(() => {
@@ -28,7 +28,7 @@ logo.addEventListener('click', e => {
   e.preventDefault();
   mainContentContainer.style.opacity = '';
   window.scrollTo(0, 0);
-  history.pushState(null, '', 'index.html');
+  history.pushState(null, '', '/');
 });
 
 document.addEventListener('scroll', () => {
