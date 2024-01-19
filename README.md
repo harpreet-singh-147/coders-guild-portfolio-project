@@ -19,4 +19,5 @@ This project involves creating a personal portfolio homepage, aimed at showcasin
 
 ### Links
 
+- Repo URL: [Repo URL here](https://github.com/harpreet-singh-147/coders-guild-portfolio-project)
 - Live Site URL: [Live site URL here](https://coders-guild-portfolio-project.netlify.app/)
