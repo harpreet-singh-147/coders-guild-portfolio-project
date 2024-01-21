@@ -1,21 +1,30 @@
+const body = document.querySelector('body');
+const headerEl = document.querySelector('.header');
+const navLogoSpan = document.querySelector('.header__nav-logo span');
 const mainEl = document.querySelector('.main');
-const scrolledMainEl = document.querySelector('.scrolled');
 const mainHeroContainer = document.querySelector('.main__hero-container');
 const mainContentContainer = document.querySelector('.main__content-container');
 const hero = document.querySelector('.hero');
 const navLinks = document.querySelectorAll('.header__nav-list a');
 const logo = document.querySelector('.header__nav-logo');
 
+const updateMainContent = (opacity, scrollToTop) => {
+  mainContentContainer.style.opacity = opacity;
+
+  if (scrollToTop) {
+    window.scrollTo(0, 0);
+  }
+};
+
 navLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     const targetSection = document.getElementById(link.className);
     if (link.className === 'home-link') {
-      mainContentContainer.style.opacity = '';
-      window.scrollTo(0, 0);
+      updateMainContent('', true);
       history.pushState(null, '', '/');
     } else {
-      mainEl.classList.add('scrolled');
+      body.classList.add('scrolled');
       setTimeout(() => {
         targetSection.scrollIntoView();
       }, 0);
@@ -26,21 +35,24 @@ navLinks.forEach(link => {
 
 logo.addEventListener('click', e => {
   e.preventDefault();
-  mainContentContainer.style.opacity = '';
-  window.scrollTo(0, 0);
+  updateMainContent('', true);
   history.pushState(null, '', '/');
 });
 
 document.addEventListener('scroll', () => {
   if (window.scrollY > 0) {
-    mainEl.classList.add('scrolled');
-    mainContentContainer.style.opacity = 1;
+    body.classList.add('scrolled');
+    updateMainContent(1, false);
     mainHeroContainer.style.opacity = 1;
+    headerEl.classList.add('header__scrolled-bg');
+    navLogoSpan.classList.add('scrolled-color');
   } else {
-    mainContentContainer.style.opacity = '';
+    updateMainContent('', false);
     mainHeroContainer.style.opacity = '';
+    headerEl.classList.remove('header__scrolled-bg');
+    navLogoSpan.classList.remove('scrolled-color');
     setTimeout(() => {
-      mainEl.classList.remove('scrolled');
+      body.classList.remove('scrolled');
     }, 150);
   }
 });
@@ -50,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const targetSection = hash ? document.getElementById(hash) : null;
 
   if (targetSection) {
-    mainEl.classList.add('scrolled');
+    body.classList.add('scrolled');
     setTimeout(() => {
       targetSection.scrollIntoView();
     }, 500);
   } else {
-    mainEl.classList.remove('scrolled');
+    body.classList.remove('scrolled');
     window.scrollTo(0, 0);
   }
 });
