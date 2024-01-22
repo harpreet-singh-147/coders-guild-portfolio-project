@@ -1,6 +1,6 @@
 import { contentSections, navLinks } from './selectors.js';
 
-function updateActiveNavLink(activeSectionId) {
+const updateActiveNavLink = activeSectionId => {
   navLinks.forEach(link => {
     if (link.getAttribute('href') === `#${activeSectionId}`) {
       link.classList.add('active-link');
@@ -8,36 +8,28 @@ function updateActiveNavLink(activeSectionId) {
       link.classList.remove('active-link');
     }
   });
-}
+};
 
-export function setupIntersectionObserver() {
-  const projectsContactObserverOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.95,
-  };
+const createObserver = threshold => {
+  return new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          updateActiveNavLink(entry.target.id);
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: '0px',
+      threshold,
+    }
+  );
+};
 
-  const projectsContactObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        updateActiveNavLink(entry.target.id);
-      }
-    });
-  }, projectsContactObserverOptions);
-
-  const generalObserverOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.9,
-  };
-
-  const generalObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        updateActiveNavLink(entry.target.id);
-      }
-    });
-  }, generalObserverOptions);
+export const setupIntersectionObserver = () => {
+  const projectsContactObserver = createObserver(0.95);
+  const generalObserver = createObserver(0.9);
 
   contentSections.forEach(section => {
     if (section.id === 'projects' || section.id === 'contact') {
@@ -46,4 +38,4 @@ export function setupIntersectionObserver() {
       generalObserver.observe(section);
     }
   });
-}
+};
