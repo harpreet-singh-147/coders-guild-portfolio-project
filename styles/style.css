@@ -209,7 +209,7 @@ body.scrolled .hero__heading {
 .skills-section {
   background-color: #2196f3;
   width: 100%;
-  min-height: 100vh;
+  min-height: 110vh;
   opacity: 0;
   transition: all 0.3s ease;
 }
