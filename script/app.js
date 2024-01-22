@@ -1,11 +1,12 @@
+import { navLinks } from './selectors.js';
+import { setupIntersectionObserver } from './intersectionObserver.js';
+
 const body = document.querySelector('body');
 const headerEl = document.querySelector('.header');
 const navLogoSpan = document.querySelector('.header__nav-logo span');
-const mainEl = document.querySelector('.main');
 const mainHeroContainer = document.querySelector('.main__hero-container');
 const mainContentContainer = document.querySelector('.main__content-container');
-const hero = document.querySelector('.hero');
-const navLinks = document.querySelectorAll('.header__nav-list a');
+const homeLink = document.querySelector('.home-link');
 const logo = document.querySelector('.header__nav-logo');
 
 const updateMainContent = (opacity, scrollToTop) => {
@@ -16,19 +17,27 @@ const updateMainContent = (opacity, scrollToTop) => {
   }
 };
 
+const removeAndAddNavClass = () => {
+  navLinks.forEach(link => {
+    link.classList.remove('active-link');
+  });
+
+  homeLink.classList.add('active-link');
+};
+
 navLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
-    const targetSection = document.getElementById(link.className);
-    if (link.className === 'home-link') {
+    const targetSection = document.getElementById(link.classList[0]);
+    if (link.classList.contains('home-link')) {
       updateMainContent('', true);
       history.pushState(null, '', '/');
     } else {
       body.classList.add('scrolled');
       setTimeout(() => {
-        targetSection.scrollIntoView();
+        targetSection?.scrollIntoView();
       }, 0);
-      history.pushState(null, '', `#${link.className}`);
+      history.pushState(null, '', `#${link.classList[0]}`);
     }
   });
 });
@@ -51,6 +60,7 @@ document.addEventListener('scroll', () => {
     mainHeroContainer.style.opacity = '';
     headerEl.classList.remove('header__scrolled-bg');
     navLogoSpan.classList.remove('scrolled-color');
+    removeAndAddNavClass();
     setTimeout(() => {
       body.classList.remove('scrolled');
     }, 150);
@@ -69,5 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     body.classList.remove('scrolled');
     window.scrollTo(0, 0);
+    homeLink.classList.add('active-link');
   }
 });
+
+setupIntersectionObserver();
