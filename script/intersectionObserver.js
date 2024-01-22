@@ -14,7 +14,7 @@ export function setupIntersectionObserver() {
   const projectsContactObserverOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.925,
+    threshold: 0.95,
   };
 
   const projectsContactObserver = new IntersectionObserver(entries => {
