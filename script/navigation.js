@@ -14,7 +14,7 @@ export const navigation = () => {
       } else {
         body.classList.add('scrolled');
         setTimeout(() => {
-          targetSection?.scrollIntoView();
+          targetSection.scrollIntoView();
         }, 0);
         history.pushState(null, '', `#${link.classList[0]}`);
       }
@@ -34,7 +34,7 @@ export const navigation = () => {
     navList.classList.toggle('show-nav');
   });
 
-  const mediaQuery = window.matchMedia('(min-width: 768px)');
+  const mediaQuery = window.matchMedia('(min-width: 769px)');
 
   function handleMediaChange(e) {
     if (e.matches) {
