@@ -24,6 +24,9 @@ const handleNavLinkClick = link => {
     }, 0);
     history.pushState(null, '', `#${link.classList[0]}`);
   }
+  if (hamburger.getAttribute('aria-expanded') === 'true') {
+    toggleHamburger();
+  }
 };
 
 const setupLogoClickEvent = () => {
