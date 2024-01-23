@@ -10,14 +10,27 @@ const updateActiveNavLink = activeSectionId => {
   });
 };
 
+const updateUrlOnScroll = activeSectionId => {
+  if (window.scrollY > 0 && activeSectionId) {
+    history.pushState(null, '', `#${activeSectionId}`);
+  }
+};
+
 const createObserver = threshold => {
   return new IntersectionObserver(
     entries => {
+      let sectionInView = false;
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          sectionInView = true;
           updateActiveNavLink(entry.target.id);
+          updateUrlOnScroll(entry.target.id);
         }
       });
+
+      if (!sectionInView && window.scrollY === 0) {
+        history.pushState(null, '', '/');
+      }
     },
     {
       root: null,
