@@ -10,3 +10,5 @@ export const contentSections = document.querySelectorAll(
 export const homeLink = document.querySelector('.home-link');
 export const logo = document.querySelector('.header__nav-logo');
 export const hamburger = document.querySelector('.header__nav-hamburger');
+export const spaceInUpAnimationClassNames =
+  document.querySelectorAll('.spaceInUp');
