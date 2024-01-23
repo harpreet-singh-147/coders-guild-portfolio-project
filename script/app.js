@@ -1,7 +1,11 @@
 import { body, homeLink } from './selectors.js';
 import { setupIntersectionObserver } from './intersectionObserver.js';
 import { navigation } from './navigation.js';
-import { updateMainContent, removeAndAddNavClass } from './utils.js';
+import {
+  updateMainContent,
+  removeAndAddNavClass,
+  removeAnimationsOnLoad,
+} from './utils.js';
 
 const headerEl = document.querySelector('.header');
 const navLogoSpan = document.querySelector('.header__nav-logo span');
@@ -47,4 +51,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   navigation();
   setupIntersectionObserver();
+  removeAnimationsOnLoad();
 });
