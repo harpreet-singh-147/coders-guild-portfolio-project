@@ -1,4 +1,9 @@
-import { mainContentContainer, navLinks, homeLink } from './selectors.js';
+import {
+  mainContentContainer,
+  navLinks,
+  homeLink,
+  spaceInUpAnimationClassNames,
+} from './selectors.js';
 
 export const updateMainContent = (opacity, scrollToTop) => {
   mainContentContainer.style.opacity = opacity;
@@ -14,4 +19,12 @@ export const removeAndAddNavClass = () => {
   });
 
   homeLink.classList.add('active-link');
+};
+
+export const removeAnimationsOnLoad = () => {
+  setTimeout(() => {
+    spaceInUpAnimationClassNames.forEach(animation => {
+      animation.classList.remove('spaceInUp');
+    });
+  }, 500);
 };
