@@ -12,6 +12,7 @@
 :root {
   --body-background: #faf9f6;
   --primary-dark-background: #121212;
+  --primary-dark-background-op: #121212a2;
   --primary-font-color: #374151;
 
   --nav-scrolled-bg-color: #6e6e6e;
@@ -41,6 +42,7 @@ body {
   font-family: 'Poppins', sans-serif;
   background: var(--primary-dark-background);
   min-height: 100vh;
+  position: relative;
 }
 
 .container {
@@ -66,6 +68,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .header__nav-logo {
@@ -150,6 +154,54 @@ body {
   transform-origin: center;
 }
 
+/***** Hamburger button *****/
+
+.header__nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+  border: none;
+  width: 5rem;
+  min-height: auto;
+  background: transparent;
+}
+
+.header__nav-hamburger-line {
+  height: 0.2rem;
+  width: 65%;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
+
+.header__nav-hamburger[aria-expanded='true']
+  .header__nav-hamburger-line:nth-child(1) {
+  transform: translateY(1rem) rotate(-45deg);
+}
+
+.header__nav-hamburger[aria-expanded='true']
+  .header__nav-hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.header__nav-hamburger[aria-expanded='true']
+  .header__nav-hamburger-line:nth-child(3) {
+  transform: translateY(-0.83rem) rotate(45deg);
+}
+
+/***** Styling for visually hidden text for screen readers *****/
+.visually-hidden {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 /****** Main *******/
 
 .main {
@@ -177,7 +229,7 @@ body.scrolled .main__hero-container {
 
 .hero {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -251,6 +303,10 @@ footer {
 /* Media queries */
 
 @media only screen and (max-width: 1000px) {
+  .header__nav {
+    width: 90%;
+  }
+
   body.scrolled .main {
     grid-template-columns: 1fr;
   }
@@ -262,5 +318,32 @@ footer {
 
   body.scrolled .hero__heading {
     animation: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header__nav-hamburger {
+    display: flex;
+  }
+
+  .header__nav-list {
+    position: absolute;
+    width: 50%;
+    right: 0;
+    top: 7rem;
+    flex-direction: column;
+    align-items: start;
+    background: var(--primary-dark-background);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    height: 100vh;
+    padding: 5rem 0 0 3.5rem;
+  }
+
+  .header__nav-list.show-nav {
+    opacity: 1;
+    visibility: visible;
+    box-shadow: 0 0 1px 1px #faf9f6;
   }
 }
