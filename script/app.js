@@ -1,15 +1,21 @@
-import { body, homeLink } from './selectors.js';
+import {
+  body,
+  homeLink,
+  headerEl,
+  navLogoSpan,
+  mainHeroContainer,
+} from './selectors.js';
+
 import { setupIntersectionObserver } from './intersectionObserver.js';
+
 import { navigation } from './navigation.js';
+
 import {
   updateMainContent,
   removeAndAddNavClass,
   removeAnimationsOnLoad,
+  updateClassesBasedOnScrollAndWidth,
 } from './utils.js';
-
-const headerEl = document.querySelector('.header');
-const navLogoSpan = document.querySelector('.header__nav-logo span');
-const mainHeroContainer = document.querySelector('.main__hero-container');
 
 document.addEventListener('scroll', () => {
   if (window.scrollY > 0) {
@@ -20,6 +26,7 @@ document.addEventListener('scroll', () => {
       headerEl.classList.add('header__scrolled-bg');
       navLogoSpan.classList.add('scrolled-color');
     }
+    updateClassesBasedOnScrollAndWidth();
   } else {
     updateMainContent('', false);
     mainHeroContainer.style.opacity = '';
