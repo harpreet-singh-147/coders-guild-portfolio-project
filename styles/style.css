@@ -46,6 +46,10 @@ body {
   position: relative;
 }
 
+body.show-nav {
+  overflow: hidden;
+}
+
 .container {
   width: 75%;
   margin: 0 auto;
@@ -313,6 +317,14 @@ footer {
 /******* Media queries *******/
 
 @media only screen and (max-width: 1000px) {
+  body.update-res-nav-bg .header {
+    background: var(--nav-scrolled-bg-color);
+  }
+
+  body.update-res-nav-bg .header__nav-logo span {
+    color: var(--white);
+  }
+
   .header__nav {
     width: 90%;
   }
@@ -366,6 +378,10 @@ footer {
   .header__nav-list.show-nav {
     opacity: 1;
     visibility: visible;
+  }
+
+  body.update-res-nav-bg .header__nav-list {
+    background: var(--nav-scrolled-bg-color);
   }
 }
 
