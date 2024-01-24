@@ -42,6 +42,7 @@ body {
   font-family: 'Poppins', sans-serif;
   background: var(--primary-dark-background);
   min-height: 100vh;
+  min-height: 100svh;
   position: relative;
 }
 
@@ -207,6 +208,7 @@ body {
 
 .main {
   min-height: 100vh;
+  min-height: 100svh;
   transition: all 0.3s ease;
 }
 
@@ -223,6 +225,7 @@ body.scrolled .main__hero-container {
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   opacity: 0;
 }
 
@@ -231,6 +234,7 @@ body.scrolled .main__hero-container {
 .hero {
   width: 100%;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -256,6 +260,7 @@ body.scrolled .hero__header {
   opacity: 0;
   transition: all 0.3s ease;
   min-height: 100vh;
+  min-height: 100svh;
   margin-top: 0.1rem;
 }
 
@@ -263,6 +268,7 @@ body.scrolled .hero__header {
   background-color: #2196f3;
   width: 100%;
   min-height: 110vh;
+  min-height: 110svh;
   opacity: 0;
   transition: all 0.3s ease;
   display: flex;
@@ -278,6 +284,7 @@ body.scrolled .hero__header {
   background-color: #f44336;
   width: 100%;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -287,6 +294,7 @@ body.scrolled .hero__header {
   background-color: #ffeb3b;
   width: 100%;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
