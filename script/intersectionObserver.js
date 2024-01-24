@@ -17,7 +17,7 @@ const updateUrlOnScroll = activeSectionId => {
 };
 
 const updateNavBarClass = entry => {
-  if (entry.isIntersecting && entry.boundingClientRect.top <= 53) {
+  if (entry.isIntersecting && entry.boundingClientRect.top <= 85) {
     body.classList.add('update-res-nav-bg');
   } else if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
     body.classList.remove('update-res-nav-bg');
@@ -46,9 +46,9 @@ const createObserver = (threshold = 0.1, rootMargin = '0px', root = null) => {
 };
 
 export const setupIntersectionObserver = () => {
-  const projectsContactObserver = createObserver(0.95);
+  const projectsContactObserver = createObserver(0.93);
   const generalObserver = createObserver(0.9);
-  const skillsObserver = createObserver(0.84);
+  const skillsObserver = createObserver(0.95);
 
   contentSections.forEach(section => {
     if (section.id === 'projects' || section.id === 'contact') {
