@@ -27,10 +27,6 @@ const createObserver = threshold => {
           updateUrlOnScroll(entry.target.id);
         }
       });
-
-      if (!sectionInView && window.scrollY === 0) {
-        history.pushState(null, '', '/');
-      }
     },
     {
       root: null,
