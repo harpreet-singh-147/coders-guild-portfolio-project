@@ -12,3 +12,9 @@ export const logo = document.querySelector('.header__nav-logo');
 export const hamburger = document.querySelector('.header__nav-hamburger');
 export const spaceInUpAnimationClassNames =
   document.querySelectorAll('.spaceInUp');
+
+export const headerEl = document.querySelector('.header');
+export const navLogoSpan = document.querySelector('.header__nav-logo span');
+export const mainHeroContainer = document.querySelector(
+  '.main__hero-container'
+);
