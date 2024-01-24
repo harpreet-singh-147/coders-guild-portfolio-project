@@ -47,6 +47,7 @@ const toggleHamburger = () => {
   const expanded = hamburger.getAttribute('aria-expanded') === 'true';
   hamburger.setAttribute('aria-expanded', !expanded);
   visuallyHiddenSpan.textContent = expanded ? 'Open menu' : 'Close menu';
+  body.classList.toggle('show-nav');
   navList.classList.toggle('show-nav');
 };
 

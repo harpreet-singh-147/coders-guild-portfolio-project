@@ -1,4 +1,4 @@
-import { contentSections, navLinks } from './selectors.js';
+import { body, contentSections, navLinks } from './selectors.js';
 
 const updateActiveNavLink = activeSectionId => {
   navLinks.forEach(link => {
@@ -16,21 +16,30 @@ const updateUrlOnScroll = activeSectionId => {
   }
 };
 
-const createObserver = threshold => {
+const updateNavBarClass = entry => {
+  if (entry.isIntersecting && entry.boundingClientRect.top <= 53) {
+    body.classList.add('update-res-nav-bg');
+  } else if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
+    body.classList.remove('update-res-nav-bg');
+  }
+};
+
+const createObserver = (threshold = 0.1, rootMargin = '0px', root = null) => {
   return new IntersectionObserver(
     entries => {
-      let sectionInView = false;
       entries.forEach(entry => {
+        if (entry.target.id === 'skills') {
+          updateNavBarClass(entry);
+        }
         if (entry.isIntersecting) {
-          sectionInView = true;
           updateActiveNavLink(entry.target.id);
           updateUrlOnScroll(entry.target.id);
         }
       });
     },
     {
-      root: null,
-      rootMargin: '0px',
+      root,
+      rootMargin,
       threshold,
     }
   );
@@ -39,12 +48,14 @@ const createObserver = threshold => {
 export const setupIntersectionObserver = () => {
   const projectsContactObserver = createObserver(0.95);
   const generalObserver = createObserver(0.9);
+  const skillsObserver = createObserver(0.84);
 
   contentSections.forEach(section => {
     if (section.id === 'projects' || section.id === 'contact') {
       projectsContactObserver.observe(section);
     } else {
       generalObserver.observe(section);
+      skillsObserver.observe(section);
     }
   });
 };
