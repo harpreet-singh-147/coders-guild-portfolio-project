@@ -219,10 +219,11 @@ body.show-nav {
 body.scrolled .main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding-top: 7.3rem;
 }
 
 .main__hero-container {
+  display: grid;
+  place-items: center;
   transition: opacity 0.3s ease;
 }
 

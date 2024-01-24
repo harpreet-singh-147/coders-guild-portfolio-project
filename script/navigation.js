@@ -18,7 +18,9 @@ const handleNavLinkClick = link => {
     updateMainContent('', true);
     history.pushState(null, '', '/');
   } else {
-    body.classList.add('scrolled');
+    if (!body.classList.add('scrolled')) {
+      body.classList.add('scrolled');
+    }
     setTimeout(() => {
       targetSection.scrollIntoView();
     }, 0);
@@ -60,6 +62,7 @@ const setupMediaQueryListener = () => {
 const handleMediaChange = e => {
   if (e.matches && navList.classList.contains('show-nav')) {
     navList.classList.remove('show-nav');
+    body.classList.remove('show-nav');
     hamburger.setAttribute('aria-expanded', 'false');
     visuallyHiddenSpan.textContent = 'Open menu';
   }
