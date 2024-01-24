@@ -302,15 +302,27 @@ footer {
   color: var(--white);
 }
 
-/* Media queries */
+/******* Media queries *******/
 
 @media only screen and (max-width: 1000px) {
   .header__nav {
     width: 90%;
   }
 
+  .vanishIn {
+    animation-duration: 0.1s;
+  }
+
+  body.scrolled .hero__header {
+    animation: none;
+  }
+
   body.scrolled .main {
     grid-template-columns: 1fr;
+  }
+
+  .main__content-container {
+    margin-top: 0;
   }
 
   body.scrolled .main__hero-container {
@@ -365,7 +377,7 @@ footer {
 
 .vanishIn {
   animation-name: vanishIn;
-  animation-duration: 0.5s;
+  animation-duration: 0.4s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
@@ -387,7 +399,7 @@ footer {
 
 .puffIn {
   animation-name: puffIn;
-  animation-duration: 0.5s;
+  animation-duration: 0.4s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
@@ -410,7 +422,7 @@ footer {
 .spaceInUp {
   -webkit-animation-name: spaceInUp;
   animation-name: spaceInUp;
-  animation-duration: 0.5s;
+  animation-duration: 0.4s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
