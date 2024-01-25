@@ -48,7 +48,7 @@ const createObserver = (threshold = 0.1, rootMargin = '0px', root = null) => {
 export const setupIntersectionObserver = () => {
   const projectsContactObserver = createObserver(0.943);
   const generalObserver = createObserver(0.9);
-  const skillsObserver = createObserver(0.95);
+  const skillsObserver = createObserver(0.99);
 
   contentSections.forEach(section => {
     if (section.id === 'projects' || section.id === 'contact') {
